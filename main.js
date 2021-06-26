@@ -9,7 +9,11 @@ ctx.canvas.height= ROWS * BLOCK_SIZE;
 ctx.scale(BLOCK_SIZE,BLOCK_SIZE);
 
 let board = new Board();
-// let button= document.getElementsByClassName("play-button").addEventListener("click", Play);
+/* use document.addEventlistener('load', event => 
+    {
+     let button= document.getElementsByClassName("play-button").addEventListener("click", Play);
+
+    } ) */
 const Play = () => 
 {
     board.reset();
@@ -39,7 +43,8 @@ document.addEventListener('keydown', event =>{
             // Get new state of piece
             let p =moves[event.key](board.piece);
             console.log(p);
-            // if(board.valid(p))
+            if(board.valid(p))
+            {
             
                 board.piece.move(p);
 
@@ -47,6 +52,6 @@ document.addEventListener('keydown', event =>{
                 ctx.clearRect(0,0, ctx.canvas.width, ctx.canvas.height);
 
                 board.piece.draw();
-            
+            }
         }
 })
